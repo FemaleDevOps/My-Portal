@@ -1,0 +1,8 @@
+.carouselItem {
+    height: calc(100vh - 57px) !important;
+  }
+
+  .carouselCaption {
+    bottom: 15% !important;
+}
+

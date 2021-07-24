@@ -1,0 +1,84 @@
+.auth {
+  width: 100%;
+  max-width: 29rem;
+  border-radius: 6px;
+  background-color: #191919;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
+  padding: 3rem;
+  text-align: left;
+  color: white;
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.auth h1 {
+  text-align: center;
+  color: white;
+}
+
+.control {
+  margin-bottom: 0.5rem;
+}
+
+.control label {
+  display: block;
+  color: #a3a3a3;
+  font-weight: 4000;
+  margin-bottom: 0.5rem;
+  font-size: 0.8em;
+}
+
+.control input {
+  font: inherit;
+  background-color: #f1e1fc;
+  color: #38015c;
+  border-radius: 4px;
+  border: 1px solid white;
+  width: 100%;
+  text-align: left;
+  padding: 0.65rem;
+  height: 45px;
+}
+
+.actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.actions button {
+  cursor: pointer;
+  font: inherit;
+  color: #191919;
+  background-color: #3ae3ff;
+  border: 1px solid #3ae3ff;
+  border-radius: 4px;
+  padding: 0.5rem 2.5rem;
+  width: 100%;
+  font-weight: 900;
+  text-transform: uppercase;
+  height: 45px;
+}
+
+.actions button:hover {
+  background-color: #84f9de;
+  border-color: #84f9de;
+}
+
+.actions .toggle {
+  margin-top: 1rem;
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  padding: 0.15rem 1.5rem;
+  font-weight: 400;
+  text-transform: none;
+}
+
+.actions .toggle:hover {
+  background-color: transparent;
+  color: #78739b;
+}
