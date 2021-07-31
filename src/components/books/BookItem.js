@@ -23,11 +23,11 @@ const BookItem = ({ article }) => {
          
          
          <div className="row d-flex align-items-center">
-         <Col lg="2" >
+         <Col lg="1" >
                 <div className="ArticleImageBlock" style={{ backgroundImage: `url(${background})` }}></div>
          
         </Col>
-        <Col lg="9" >
+        <Col lg="10" >
      
         <div className="articleHeading">{article.headline.main} </div>
          <div className="articleAuth">{article.byline.original} </div>

@@ -1,24 +1,12 @@
 import React, { useState } from 'react';
-import { Fragment } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 
-import classes from './QuoteList.module.css';
-
+import classes from './BannerList.module.css';
 import Wrapper from '../helpers/Wrapper';
-
-import { IconContext } from "react-icons";
-import {  AiOutlineSortAscending, AiOutlineSortDescending, AiOutlinePlus } from "react-icons/ai";
 
 import Carousel from 'react-bootstrap/Carousel';
 import ControlledCarousel from '../UI/Carousel';
-import ControllItem from '../UI/CarouselItem';
-import QuoteItem from './QuoteItem';
+import BannerItem from './BannerItem';
 
 const sortQuotes = (quotes, ascending) => {
   return quotes.sort((quoteA, quoteB) => {
@@ -30,7 +18,7 @@ const sortQuotes = (quotes, ascending) => {
   });
 };
 
-const QuoteList = (props) => {
+const BannerList = (props) => {
   const history = useHistory();
   const location = useLocation();
 
@@ -53,22 +41,19 @@ const QuoteList = (props) => {
     setIndex(selectedIndex);
   };
 
-
   return (
     <Wrapper>
-
-          <ControlledCarousel className="slider">
+      <ControlledCarousel className="slider">
         {sortedQuotes.map((quote) => (
-            <Carousel.Item className={classes.homeSlider}>
-               
-          <QuoteItem
-            key={quote.id}
-            id={quote.id}
-            author={quote.author}
-            text={quote.text}
-            align={quote.align}
-            image={quote.image}
-          />
+            <Carousel.Item className={classes.homeSlider}>    
+              <BannerItem
+                key={quote.id}
+                id={quote.id}
+                author={quote.author}
+                text={quote.text}
+                align={quote.align}
+                image={quote.image}
+              />
           </Carousel.Item>
         ))}
        </ControlledCarousel>
@@ -76,4 +61,4 @@ const QuoteList = (props) => {
   );
 };
 
-export default QuoteList;
+export default BannerList;

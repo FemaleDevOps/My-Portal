@@ -42,7 +42,7 @@ export default StartingPageContent;
 */
 import { useEffect } from 'react';
 
-import QuoteList from '../../components/StartingPage/QuoteList';
+import BannerList from './BannerList';
 import LoadingSpinner from '../../components/UI/LoadingSpinner';
 import NoQuotesFound from '../../components/quotes/NoQuotesFound';
 import useHttp from '../../hooks/use-http';
@@ -85,9 +85,8 @@ const AllQuotes = () => {
 
   return (
     <section className={classes.starting}>
-       <QuoteList quotes={loadedQuotes} />
-
-</section>
+       <BannerList quotes={loadedQuotes} />
+      </section>
   );
 };
 

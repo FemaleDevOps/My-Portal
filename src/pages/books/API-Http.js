@@ -41,6 +41,7 @@ const HttpApi = () => {
     return (
       <Container>
         <div className="APIHeaderBar">
+        <h1>API BOOKS</h1>
           <input
             type="text"
             className="httpSearch"

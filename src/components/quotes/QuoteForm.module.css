@@ -20,6 +20,7 @@
   font-weight: bold;
   display: block;
   margin-bottom: 0.5rem;
+  color: #fff !important;
 }
 
 .control input,
@@ -45,5 +46,40 @@
 }
 
 .actions button {
-  font-size: 1.25rem;
+  font-size: 1rem;
+}
+
+.topHeader {
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e2e1e1;
+  margin-bottom: 2rem;
+  margin-top: 2em;
+  display: flex;
+}
+
+.topHeader h1{
+  margin: 0 0 0 auto;
+}
+
+.topHeader button{
+  font: inherit;
+  color: teal;
+  border: 1px solid #222222;
+  background-color: #222222;
+  border-radius: 4px;
+  padding: 0.2rem 1rem;
+  cursor: pointer;
+  height: 40px;
+  display: inline-block;
+}
+
+.custCard {
+  background: #13767C !important;
+  padding: 2.5em;
+  border: 1px solid;
+  border-radius: 20px !important;
+}
+
+.iconHeading{
+  margin-top: -11px;
 }

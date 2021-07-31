@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect  } from 'react';
 import { Link } from 'react-router-dom';
 
 import AuthContext from '../../store/auth-context';
@@ -10,7 +10,7 @@ import {
   MenuButton,
   FocusableItem
 } from '@szhsin/react-menu';
-import '@szhsin/react-menu/dist/index.css';
+
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 
 import { DiReact } from "react-icons/di";
@@ -18,10 +18,16 @@ import { BiLogInCircle, BiLogOutCircle, BiUserCircle, BiUserPin } from "react-ic
 
 import { IconContext } from "react-icons";
 import { AiOutlineDashboard } from "react-icons/ai";
+
+
+import {func2,routes} from '../../helpers/Helpers.js';
+
 const MainNavigation = () => {
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
 
+
+  
   const logoutHandler = () => {
     authCtx.logout();
     // optional: redirect the user
@@ -29,89 +35,15 @@ const MainNavigation = () => {
 
   const [filter, setFilter] = useState('');
 
-  const people = [
-    {
-      id: 1,
-      name: 'Firebase',
-      link: '/api-firebase',
-    },
-    {
-      id: 2,
-      name: 'Https',
-      link: '/api-http',
-    },
+ 
 
-  ];
+  let pathname = window.location.pathname;
+    useEffect(() => {
+        pathname = window.location.pathname;
+    }, [window.location.pathname]);
 
-  const cheetsheet = [
-    {
-      id: 0,
-      name: 'Getting Started',
-      link: '/api-firebase',
-    },
-    {
-      id: 1,
-      name: 'Working With Components',
-      link: '/api-firebase',
-    },
-    {
-      id: 2,
-      name: 'Passing Data via Props',
-      link: '/api-http',
-    },
-    {
-      id: 3,
-      name: 'State & Events',
-      link: '/api-http',
-    },
-    {
-      id: 4,
-      name: 'Navigation & Routung',
-      link: '/api-http',
-    },
-    {
-      id: 5,
-      name: 'Forms & User Input',
-      link: '/api-http',
-    },
-    {
-      id: 6,
-      name: 'Styling React Components',
-      link: '/api-http',
-    },
-    {
-      id: 7,
-      name: 'Fragments, Portals & "Refs',
-      link: '/api-http',
-    },
-    {
-      id: 8,
-      name: 'Using Effects Hooks',
-      link: '/api-http',
-    },
-    {
-      id: 9,
-      name: 'Sending Http Requests',
-      link: '/api-http',
-    },
-    {
-      id: 10,
-      name: 'Redux & Context API',
-      link: '/api-http',
-    },
-    {
-      id: 11,
-      name: 'Authentication',
-      link: '/api-http',
-    },
-    {
-      id: 12,
-      name: 'Animating React Apps',
-      link: '/api-http',
-    },
-     
-    
-  ];
+
+
 
   return (
       <Navbar expand="lg" className={classes.myNavBar}>
@@ -132,12 +64,17 @@ const MainNavigation = () => {
                         <input ref={ref} type="text" placeholder="Type to filter" class="dropFilterInput" value={filter} onChange={e => setFilter(e.target.value)} />
                     )}
                 </FocusableItem>
-                <NavDropdown.Divider />
-                  {cheetsheet.filter(cheetsheet => cheetsheet.name.toUpperCase().includes(filter.trim().toUpperCase())).map(cheetsheet => (
-                    <MenuItem key={cheetsheet.id} className={({ active, hover }) => active ? 'activeClass' : hover ? 'HoverClass' : 'filterItem'} >
-                      <Link to={cheetsheet.link} >{cheetsheet.name}</Link>
+          
+                  {routes().filter(cheetsheet => cheetsheet.name.toUpperCase().includes(filter.trim().toUpperCase())).map(cheetsheet => (
+                    <MenuItem 
+                    href={cheetsheet.path} key={cheetsheet.id} 
+                
+                    className={ [`${pathname.match(cheetsheet.path) ? classes.activeClass : classes.HoverClass }`, classes.filterItem ].join(' ')}
+                     >
+                    {cheetsheet.name}
                   </MenuItem>
                   ))}
+                
             </NavDropdown>
               
               <NavDropdown title="API Examples" id="collasible-nav-dropdown"
@@ -147,24 +84,30 @@ const MainNavigation = () => {
                         <input ref={ref} type="text" placeholder="Type to filter" class="dropFilterInput" value={filter} onChange={e => setFilter(e.target.value)} />
                     )}
                 </FocusableItem>
-                <NavDropdown.Divider />
-                  {people.filter(person => person.name.toUpperCase().includes(filter.trim().toUpperCase())).map(person => (
-                    <MenuItem key={person.id} className={({ active, hover }) => active ? 'activeClass' : hover ? 'HoverClass' : 'filterItem'} >
-                      <Link to={person.link} >{person.name}</Link>
+              
+                  {func2().filter(person => person.name.toUpperCase().includes(filter.trim().toUpperCase())).map(person => (
+                    <MenuItem href={person.link}key={person.id} className={({ active, hover }) => active ? 'activeClass' : hover ? 'HoverClass' : 'filterItem'} >
+                    {person.name}
                   </MenuItem>
                   ))}
             </NavDropdown>
            
             </Nav>
             <Nav>
+               
                {isLoggedIn && (
-                <NavDropdown  align="end" title={
-                  <IconContext.Provider value={{ color: "#00e0f8", size: "2em", className: "global-class-name" }}>
+                <NavDropdown  align="end" title=
+                {[
+                  "Welcome User! ", <IconContext.Provider value={{ color: "#00e0f8", size: "2em", className: "global-class-name" }}>
                   <BiUserCircle />
                 </IconContext.Provider>
-                } id="basic-nav-dropdown" >
+                ]
                  
-
+                  
+                } 
+                id="basic-nav-dropdown" >
+                 
+                  
                   
                   <NavDropdown.Item href="/dashboard">
                   <IconContext.Provider value={{ color: "#00e0f8", size: "1.5em", className: "dropIconUser" }}>
@@ -187,12 +130,12 @@ const MainNavigation = () => {
                     </NavDropdown.Item>
                 </NavDropdown>
                 )}
-              {!isLoggedIn && (    
-               <Link to='/auth'>
+              {!isLoggedIn && (  
+                <Nav.Link href="/auth">
                   <IconContext.Provider value={{ color: "#00e0f8", size: "2.8em", className: "global-class-name" }}>
                    <BiLogInCircle />
                  </IconContext.Provider>
-               </Link> 
+                 </Nav.Link>  
                )}
           </Nav>
           </Navbar.Collapse>

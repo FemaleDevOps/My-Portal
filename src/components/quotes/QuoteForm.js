@@ -1,13 +1,16 @@
-import { Fragment, useRef, useState } from 'react';
-import { Prompt } from 'react-router-dom';
+import { useRef, useState } from 'react';
+import { Prompt, useHistory } from 'react-router-dom';
 
-import Card from '../UI/Card';
+
 import LoadingSpinner from '../UI/LoadingSpinner';
 import classes from './QuoteForm.module.css';
 
 import { IconContext } from "react-icons";
 import { AiOutlineSend } from "react-icons/ai";
 
+import { Container } from 'react-bootstrap';
+
+import {  AiOutlineBackward , AiOutlinePlus} from "react-icons/ai";
 const QuoteForm = (props) => {
   const [isEntering, setIsEntering] = useState(false);
 
@@ -33,15 +36,31 @@ const QuoteForm = (props) => {
     setIsEntering(true);
   };
 
+  let history = useHistory();
+
   return (
-    <Fragment>
+    <Container>
+
+      <div className={classes.topHeader}>
+       
+        <button onClick={() => history.goBack()}>
+       <IconContext.Provider value={{ color: "#fff", size: "1.5em", className: "global-class-name" }}>
+                  <AiOutlineBackward />
+                </IconContext.Provider>
+       </button>
+       <h1>
+       <IconContext.Provider value={{ color: "#13767C", size: "1.5em", className: classes.iconHeading  }}>
+            <AiOutlinePlus />
+        </IconContext.Provider>
+          QUOTE</h1>
+        </div>
       <Prompt
         when={isEntering}
         message={(location) =>
           'Are you sure you want to leave? All your entered data will be lost!'
         }
       />
-      <Card>
+      <div className={classes.custCard}>
         <form
           onFocus={formFocusedHandler}
           className={classes.form}
@@ -69,8 +88,8 @@ const QuoteForm = (props) => {
             </button>
           </div>
         </form>
-      </Card>
-    </Fragment>
+      </div>
+      </Container>
   );
 };
 

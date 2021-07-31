@@ -44,6 +44,7 @@ const QuoteList = (props) => {
   return (
     <Wrapper>
       <div className={classes.sorting}>
+        <h1>API QUOTES</h1>
         <button onClick={changeSortingHandler}>
          {isSortingAscending ? <IconContext.Provider value={{ color: "#fff", size: "1.5em", className: "global-class-name" }}>
             <AiOutlineSortDescending />

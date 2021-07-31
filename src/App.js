@@ -1,5 +1,14 @@
 import { useContext } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+
+import {
+  BrowserRouter as Router,
+  Link,
+  useLocation,
+  Switch,
+  Route,
+  Redirect,
+  useParams
+} from "react-router-dom";
 
 import Layout from './components/Layout/Layout';
 import UserProfile from './components/Profile/UserProfile';
@@ -16,11 +25,16 @@ import HttpApi from './pages/books/API-Http';
 import NotFound from './pages/quotes/NotFound';
 import Dashboard from './pages/dashboard/Dashboard';
 
+import CheetSheet from './pages/cheetsheet/CheetSheet';
+
+
+
 function App() {
   const authCtx = useContext(AuthContext);
 
   return (
     <Layout>
+      <Router>
       <Switch>
         <Route path='/' exact>
           <HomePage />
@@ -31,14 +45,22 @@ function App() {
         <Route path='/api-firebase/:quoteId'>
           <QuoteDetail />
         </Route>
+
         <Route path='/new-quote'>
           <NewQuote />
         </Route>
         <Route path='/api-http' exact>
             <HttpApi />
         </Route>
+        <Route path='/cheetSheet' exact>
+            <Redirect to="/cheetSheet/getting-started" />
+        </Route>
+        <Route path='/cheetSheet/' >
+            <CheetSheet />
+        </Route>
+     
         {!authCtx.isLoggedIn && (
-          <Route path='/auth'>
+          <Route path='/auth' >
             <AuthPage />
           </Route>
         )}
@@ -54,6 +76,7 @@ function App() {
           <NotFound />
         </Route>
       </Switch>
+      </Router>
     </Layout>
   );
 }

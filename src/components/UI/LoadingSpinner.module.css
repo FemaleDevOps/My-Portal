@@ -26,3 +26,16 @@
     transform: rotate(360deg);
   }
 }
+
+
+.outCon{
+  background:#191919;
+background-size: cover;
+background-position: center;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+}

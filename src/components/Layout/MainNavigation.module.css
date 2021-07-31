@@ -3,7 +3,23 @@
   height: 60px !important;
 }
 
-.myNavBar a{
-  color: #fff !important;
-  }
 
+
+.filterItem{
+  color: #fff !important;
+  background: #191919!important;
+  border-color: #000;
+  font-size: 0.8em !important;
+  width: 100%;
+  display: block;
+  padding: 0.4em 1em !important;
+}
+
+.activeClass{
+  background: #63729B !important;
+  border-color: #63729B;
+}
+
+.HoverClass{
+  
+}

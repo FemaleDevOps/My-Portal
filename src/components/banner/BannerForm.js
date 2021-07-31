@@ -1,3 +1,4 @@
+import React from 'react';
 import { Fragment, useRef, useState } from 'react';
 import { Prompt } from 'react-router-dom';
 
@@ -7,6 +8,10 @@ import classes from './BannerForm.module.css';
 
 import { IconContext } from "react-icons";
 import { AiOutlineSend } from "react-icons/ai";
+import Form from 'react-bootstrap/Form';
+import FloatingLabel from 'react-bootstrap/FloatingLabel'
+
+
 
 const BannerForm = (props) => {
   const [isEntering, setIsEntering] = useState(false);
@@ -16,6 +21,7 @@ const BannerForm = (props) => {
   const imageInputRef = useRef();
   const alignInputRef = useRef();
 
+
   function submitFormHandler(event) {
     event.preventDefault();
 
@@ -23,7 +29,7 @@ const BannerForm = (props) => {
     const enteredText = textInputRef.current.value;
     const enteredImage = imageInputRef.current.value;
     const enteredAlignt = alignInputRef.current.value;
-    // optional: Could validate here
+   
 
     props.onAddQuote({ author: enteredAuthor, text: enteredText , image: enteredImage, align: enteredAlignt});
   }
@@ -35,6 +41,8 @@ const BannerForm = (props) => {
   const formFocusedHandler = () => {
     setIsEntering(true);
   };
+
+  
 
   return (
     <Fragment>
@@ -57,20 +65,32 @@ const BannerForm = (props) => {
           )}
 
           <div className={classes.control}>
-            <label htmlFor='title'>Title</label>
-            <input type='text' id='title' ref={authorInputRef} />
+     
+            <Form.Control  type="text" placeholder="Title" id='title' ref={authorInputRef}  />
           </div>
           <div className={classes.control}>
-            <label htmlFor='text'>Caption</label>
-            <textarea id='text' rows='5' ref={textInputRef}></textarea>
+           
+            <FloatingLabel controlId="floatingTextarea" label="Intro" className="">
+              <Form.Control as="textarea" placeholder="Leave a comment here" id='text' ref={textInputRef}
+                as="textarea" />
+            </FloatingLabel>
+         
           </div>
           <div className={classes.control}>
-            <label htmlFor='title'>Image Name</label>
-            <input type='text' id='image' ref={imageInputRef} />
+          <Form.Group controlId="formFile" className="mb-3">
+            <Form.Label>Upload Image</Form.Label>
+            <Form.Control type="file" id='image' ref={imageInputRef}  />
+          </Form.Group>
+        
+          
           </div>
           <div className={classes.control}>
-            <label htmlFor='title'>Caption Alignment</label>
-            <input type='text' id='align' ref={alignInputRef} />
+            <Form.Select id='align' ref={alignInputRef} >
+              <option value="">Alignment</option>
+              <option value="Captionleft">Left</option>
+              <option value="Captionright">Right</option>
+              <option value="Captioncenter">Center</option>
+            </Form.Select>
           </div>
           <div className={classes.actions}>
             <button onClick={finishEnteringHandler} className='btn'>

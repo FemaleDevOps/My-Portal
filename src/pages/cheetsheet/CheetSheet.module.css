@@ -1,0 +1,27 @@
+.sidebarCheetSheet li.active{
+    background-color: #63729B;
+    border-color: #63729B;
+}
+
+.sidebarCheetSheet li{
+    background-color: #232323;
+    border-color: #191919;
+    padding: 0.3rem 1.1rem;
+    
+}
+
+ a{
+    color: #fff !important;
+    font-size: 0.8em !important;
+}
+
+.contentArea{
+    background: #232323;
+    padding: 2em;
+    border-radius: 10px;
+}
+
+.contentArea h2{
+    color: #fff !important;
+    font-size: 1.4em !important;
+}
